@@ -22,3 +22,14 @@ try {
     res.status(500).json({ error: error.message });
 }
 };
+
+exports.getCourseById = async (req, res) => {
+    const id = req.params.id
+
+    try{
+        const courses = await Course.findById(id);
+        res.status(200).json(courses);
+    }catch (error) {
+        res.status(500).json({ error: error.message})
+    }
+    }
