@@ -30,10 +30,15 @@ exports.getCourseById = async (req, res) => {
 
     try{
         const courses = await Course.findById(id);
+        if(!courses){
+          return res.status(404).json("the course does not exist")
+        }
+
         res.status(200).json(courses);
     }catch (error) {
         res.status(500).json({ error: error.message})
-    }
+        
+    } 
     }
 
 
