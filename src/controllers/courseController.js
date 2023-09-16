@@ -2,8 +2,14 @@ const Course = require("../models/course");
 
 exports.createCourse = async (req, res) => {
   try {
-    const course = new Course(req.body);
-    const savedCourse = await course.save();
+    const {course, description, modules, duration, availability} = req.body
+    const imageUrl = 'http://localhost:3300/images'
+   
+    const courseInfo = new Course({
+        course, description, modules, duration, availability, imageUrl
+    });
+
+    const savedCourse = await courseInfo.save();
     res.status(201).json(savedCourse);
   } catch (error) {
     res.status(500).json({ error: error.message });
