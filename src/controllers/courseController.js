@@ -1,23 +1,26 @@
 const Course = require("../models/course");
 
-// exports.createCourse = async (req, res) => {
+exports.createCourse = async (req, res) => {
+  try {
+    const { course, description, modules, duration, availability } = req.body;
 
-//   try {
-//     const {course, description, modules, duration, availability} = req.body
-//     console.log(req.file)
-//     const imagePath = req.body.imageUrl.split('\\')[2]
-//     const imageUrl = 'http://localhost:3300/' + imagePath
-   
-//     const courseInfo = new Course({
-//         course, description, modules, duration, availability, imageUrl
-//     });
+    const imageUrl = "http://localhost:3300/images/" + req.file.filename;
 
-//     const savedCourse = await courseInfo.save();
-//     res.status(201).json(savedCourse);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
+    const courseInfo = new Course({
+      course,
+      description,
+      modules,
+      duration,
+      availability,
+      imageUrl,
+    });
+
+    const savedCourse = await courseInfo.save();
+    res.status(201).json(savedCourse);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 exports.getAllCourses = async (_req, res) => {
   try {
@@ -66,7 +69,7 @@ exports.applyRemoveAll = async (req, res) => {
   try {
     const course = await Course.deleteMany({}, req.body);
     res.status(201).json("Removed all data!");
-  } catch (catcherr) {
-    res.status(404).json({ catcherr: catcherr.message });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
   }
 };
