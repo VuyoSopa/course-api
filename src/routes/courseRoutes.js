@@ -9,10 +9,10 @@ router.post("/create", upload.single("file"), courseController.createCourse);
 router.get("/", courseController.getAllCourses);
 router.get("/:id", courseController.getCourseById);
 
-router.put("/:id", courseController.updateByObjectId);
+router.put("/:id", courseController.updateCourseBytId);
 
-router.delete("/:id", courseController.applyDelete);
+router.delete("/:id", courseController.deleteCourseById);
 
-router.delete("/remove", courseController.applyRemoveAll);
+router.delete("/remove", courseController.deleteAllCourses);
 
 module.exports = router;

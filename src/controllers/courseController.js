@@ -46,7 +46,7 @@ exports.getCourseById = async (req, res) => {
   }
 };
 
-exports.updateByObjectId = async (req, res) => {
+exports.updateCourseBytId = async (req, res) => {
   try {
     const course = await Course.findByIdAndUpdate(req.params.id, req.body);
 
@@ -56,7 +56,7 @@ exports.updateByObjectId = async (req, res) => {
   }
 };
 
-exports.applyDelete = async (req, res) => {
+exports.deleteCourseById = async (req, res) => {
   try {
     const result = await Course.findByIdAndRemove(req.params.id);
     res.status(201).json("Deleted successfully!");
@@ -65,7 +65,7 @@ exports.applyDelete = async (req, res) => {
   }
 };
 
-exports.applyRemoveAll = async (req, res) => {
+exports.deleteAllCourses = async (req, res) => {
   try {
     const course = await Course.deleteMany({}, req.body);
     res.status(201).json("Removed all data!");
