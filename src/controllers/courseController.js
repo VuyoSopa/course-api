@@ -1,20 +1,23 @@
 const Course = require("../models/course");
 
-exports.createCourse = async (req, res) => {
-  try {
-    const {course, description, modules, duration, availability} = req.body
-    const imageUrl = 'http://localhost:3300/images'
-   
-    const courseInfo = new Course({
-        course, description, modules, duration, availability, imageUrl
-    });
+// exports.createCourse = async (req, res) => {
 
-    const savedCourse = await courseInfo.save();
-    res.status(201).json(savedCourse);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+//   try {
+//     const {course, description, modules, duration, availability} = req.body
+//     console.log(req.file)
+//     const imagePath = req.body.imageUrl.split('\\')[2]
+//     const imageUrl = 'http://localhost:3300/' + imagePath
+   
+//     const courseInfo = new Course({
+//         course, description, modules, duration, availability, imageUrl
+//     });
+
+//     const savedCourse = await courseInfo.save();
+//     res.status(201).json(savedCourse);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
 
 exports.getAllCourses = async (_req, res) => {
   try {
@@ -40,7 +43,7 @@ exports.getCourseById = async (req, res) => {
   }
 };
 
-exports.updatebyObjectId = async (req, res) => {
+exports.updateByObjectId = async (req, res) => {
   try {
     const course = await Course.findByIdAndUpdate(req.params.id, req.body);
 
