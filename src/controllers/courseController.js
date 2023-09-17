@@ -48,7 +48,7 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourseBytId = async (req, res) => {
   try {
-    const course = await Course.findByIdAndUpdate(req.params.id, req.body);
+    await Course.findByIdAndUpdate(req.params.id, req.body);
 
     res.status(201).json("Changes made successfully");
   } catch (error) {
@@ -58,7 +58,7 @@ exports.updateCourseBytId = async (req, res) => {
 
 exports.deleteCourseById = async (req, res) => {
   try {
-    const result = await Course.findByIdAndRemove(req.params.id);
+    await Course.findByIdAndRemove(req.params.id);
     res.status(201).json("Deleted successfully!");
   } catch (error) {
     res.status(201).json({ error: error.message });
@@ -67,8 +67,8 @@ exports.deleteCourseById = async (req, res) => {
 
 exports.deleteAllCourses = async (req, res) => {
   try {
-    const course = await Course.deleteMany({}, req.body);
-    res.status(201).json("Removed all data!");
+    await Course.deleteMany({}, req.body);
+    res.status(201).json("Removed all courses!");
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
